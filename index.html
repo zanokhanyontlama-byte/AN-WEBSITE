@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B0B0D">
+<title>AN-Couture | Scent as Silhouette</title>
+<meta name="description" content="AN-Couture — a modern couture perfume house. Noir Velours, Voile Blanc, Cuir Rouge, Sel d'Été. Scent worn like couture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0D;
+    --ink-2:#141417;
+    --ink-3:#1D1D21;
+    --parchment:#F1ECE3;
+    --stone:#9C9488;
+    --stone-dim:#6B655C;
+    --gold:#C9A24B;
+    --gold-dim:#8C7233;
+    --amber:#6E0E1A;
+    --amber-bright:#B3202F;
+    --gucci-green:#04402B;
+    --gucci-green-bright:#0B6B44;
+    --line:rgba(241,236,227,0.12);
+    --display:'Fraunces', serif;
+    --body:'Inter', sans-serif;
+    --mono:'Space Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--parchment);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font:inherit;cursor:pointer;background:none;border:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+
+  ::selection{background:var(--gold);color:var(--ink);}
+
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* ---------- utility ---------- */
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.9s ease, transform 0.9s ease;}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    padding:22px 0;
+    transition:background 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.is-scrolled{
+    background:rgba(11,11,13,0.85);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    padding:16px 0;
+    border-color:var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .logo{
+    font-family:var(--display);
+    font-size:20px;
+    letter-spacing:2px;
+    font-weight:500;
+  }
+  .logo span{color:var(--gold);}
+  .nav-links{display:flex;align-items:center;gap:36px;}
+  .nav-link{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--stone);
+    transition:color 0.25s ease;
+  }
+  .nav-link:hover{color:var(--parchment);}
+  .nav-cta{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    border:1px solid var(--gold-dim);
+    color:var(--gold);
+    padding:11px 20px;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .nav-cta:hover{background:var(--gold);color:var(--ink);}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;padding:6px;}
+  .nav-toggle span{width:22px;height:1px;background:var(--parchment);transition:transform .25s ease, opacity .25s ease;}
+  .nav-toggle.is-open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .nav-toggle.is-open span:nth-child(2){opacity:0;}
+  .nav-toggle.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    padding:140px 0 80px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(55% 50% at 80% 30%, rgba(110,14,26,0.30) 0%, rgba(110,14,26,0) 70%),
+      radial-gradient(45% 45% at 68% 62%, rgba(4,64,43,0.26) 0%, rgba(4,64,43,0) 72%),
+      radial-gradient(40% 40% at 15% 85%, rgba(201,162,75,0.12) 0%, rgba(201,162,75,0) 70%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:64px;
+    align-items:center;
+    width:100%;
+  }
+  .hero-eyebrow{margin-bottom:26px;}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(46px, 6.4vw, 92px);
+    line-height:0.96;
+    letter-spacing:-1px;
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--amber-bright);}
+  .hero-sub{
+    margin-top:28px;
+    max-width:42ch;
+    font-size:17px;
+    color:var(--stone);
+    font-weight:300;
+  }
+  .hero-actions{margin-top:42px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+  .btn-primary{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    background:var(--parchment);
+    color:var(--ink);
+    padding:17px 30px;
+    transition:transform 0.25s ease, background 0.25s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);background:var(--gold);}
+  .btn-text{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--parchment);
+    border-bottom:1px solid var(--stone-dim);
+    padding-bottom:4px;
+    transition:border-color 0.25s ease, color .25s ease;
+  }
+  .btn-text:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ribbon signature panel */
+  .ribbon-stage{
+    position:relative;
+    aspect-ratio:3/4.6;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ribbon-panel{
+    position:relative;
+    width:78%;
+    height:88%;
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    box-shadow:0 40px 80px rgba(0,0,0,0.45);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:30px 26px;
+  }
+  .ribbon-stripe{
+    position:absolute;
+    top:0; bottom:0;
+    left:38%;
+    width:26%;
+    background:repeating-linear-gradient(
+      90deg,
+      var(--amber) 0%, var(--amber) 16%,
+      var(--gold) 16%, var(--gold) 20%,
+      var(--gucci-green) 20%, var(--gucci-green) 36%,
+      var(--gold) 36%, var(--gold) 40%,
+      var(--amber) 40%, var(--amber) 56%
+    );
+    transform:skewX(-9deg);
+    opacity:0.92;
+  }
+  .ribbon-top{position:relative;z-index:2;}
+  .ribbon-house{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--parchment);
+  }
+  .ribbon-house span{color:var(--gold);}
+  .ribbon-bottom{position:relative;z-index:2;}
+  .ribbon-price-label{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--stone);
+  }
+  .ribbon-price{
+    font-family:var(--display);
+    font-size:34px;
+    font-weight:500;
+    color:var(--parchment);
+    margin-top:6px;
+  }
+  .ribbon-price em{font-style:normal;color:var(--gold);}
+
+  /* ---------- section shell ---------- */
+  section.block{padding:130px 0;position:relative;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(30px, 3.4vw, 46px);
+    letter-spacing:-0.5px;
+    margin-top:14px;
+    line-height:1.08;
+  }
+  .section-head p{margin-top:20px;color:var(--stone);font-size:15.5px;font-weight:300;max-width:52ch;}
+
+  /* ---------- manifesto ---------- */
+  .manifesto{background:var(--ink-2);}
+  .manifesto-inner{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:70px;
+    align-items:start;
+  }
+  .manifesto-quote{
+    font-family:var(--display);
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(24px, 2.6vw, 34px);
+    line-height:1.35;
+    color:var(--parchment);
+  }
+  .manifesto-quote .accent{color:var(--gucci-green-bright);font-style:normal;}
+  .manifesto-body p{color:var(--stone);font-size:15px;font-weight:300;margin-bottom:18px;max-width:48ch;}
+  .manifesto-body p:last-child{margin-bottom:0;}
+
+  /* ---------- collection ---------- */
+  .collection-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .scent-card{
+    background:var(--ink);
+    padding:38px 26px 30px;
+    position:relative;
+    transition:background 0.35s ease;
+    min-height:460px;
+    display:flex;
+    flex-direction:column;
+  }
+  .scent-card:hover{background:var(--ink-3);}
+  .scent-index{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--stone-dim);
+    letter-spacing:1px;
+  }
+  .scent-swatch{
+    width:100%;
+    height:64px;
+    margin:22px 0 26px;
+    background:repeating-linear-gradient(
+      120deg,
+      var(--swatch-a) 0%, var(--swatch-a) 30%,
+      var(--gold) 30%, var(--gold) 36%,
+      var(--swatch-b) 36%, var(--swatch-b) 66%,
+      var(--gold) 66%, var(--gold) 72%,
+      var(--swatch-a) 72%, var(--swatch-a) 100%
+    );
+  }
+  .scent-photo-frame{
+    position:relative;
+    width:100%;
+    height:230px;
+    overflow:hidden;
+    background:linear-gradient(160deg, var(--ink-3) 0%, var(--ink-2) 100%);
+    border:1px solid var(--line);
+    margin-top:14px;
+  }
+  .scent-photo-frame.photo-fallback::before{
+    content:"Add Perfume-image.jpg next to this file";
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:20px;
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.5px;
+    color:var(--stone-dim);
+  }
+  .scent-photo-frame::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(60% 55% at 50% 20%, rgba(201,162,75,0.10) 0%, rgba(201,162,75,0) 70%);
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .5s ease;
+  }
+  .scent-photo-frame:hover::after{opacity:1;}
+  .scent-photo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    animation:photo-float 5s ease-in-out infinite;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+    filter:saturate(0.96) contrast(1.02);
+  }
+  .scent-photo-frame:hover .scent-photo{
+    transform:scale(1.08);
+    filter:saturate(1.05) contrast(1.05);
+  }
+  @keyframes photo-float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-6px);}
+  }
+  .scent-photo-frame:hover .scent-photo{animation-play-state:paused;}
+  .scent-name{
+    font-family:var(--display);
+    font-size:22px;
+    font-weight:500;
+    letter-spacing:-0.2px;
+  }
+  .scent-mood{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.5px;
+    color:var(--gold);
+    margin-top:8px;
+    text-transform:uppercase;
+  }
+  .scent-notes{
+    margin-top:18px;
+    font-size:13px;
+    color:var(--stone);
+    font-weight:300;
+    flex-grow:1;
+  }
+  .scent-notes strong{color:var(--stone-dim);font-weight:500;display:inline-block;width:44px;font-size:11px;letter-spacing:0.5px;}
+  .scent-line{margin-bottom:6px;}
+  .scent-foot{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    font-family:var(--mono);
+    font-size:11.5px;
+  }
+  .price-row{display:flex;justify-content:space-between;align-items:baseline;}
+  .price-size{color:var(--stone);letter-spacing:1px;}
+  .price-amt{color:var(--parchment);font-size:13px;}
+  .scent-foot a{
+    margin-top:4px;
+    align-self:flex-start;
+    color:var(--gold);
+    border-bottom:1px solid var(--gold-dim);
+    padding-bottom:2px;
+    transition:border-color .25s ease,color .25s ease;
+  }
+  .scent-foot a:hover{color:var(--parchment);border-color:var(--parchment);}
+
+  /* ---------- craftsmanship / pyramid ---------- */
+  .craft{background:var(--ink-2);}
+  .craft-inner{display:grid;grid-template-columns:0.95fr 1.05fr;gap:70px;align-items:center;}
+  .craft-copy p{color:var(--stone);font-size:15px;font-weight:300;margin-bottom:18px;max-width:46ch;}
+  .craft-flag{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--amber-bright);
+    border:1px solid rgba(110,14,26,0.45);
+    padding:7px 14px;
+    margin-bottom:20px;
+  }
+  .pyramid{display:flex;flex-direction:column;gap:14px;}
+  .pyr-row{position:relative;}
+  .pyr-label{
+    display:flex;justify-content:space-between;
+    font-family:var(--mono);
+    font-size:11px;letter-spacing:1px;text-transform:uppercase;
+    color:var(--stone);
+    margin-bottom:8px;
+  }
+  .pyr-label b{color:var(--parchment);font-weight:500;}
+  .pyr-track{
+    height:10px;
+    background:var(--ink-3);
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .pyr-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--gucci-green), var(--gold), var(--amber-bright));
+    transition:width 1.4s cubic-bezier(.2,.7,.3,1);
+  }
+  .pyr-fill.is-filled{width:var(--target);}
+  .pyr-notes{margin-top:8px;font-size:13px;color:var(--stone-dim);font-weight:300;}
+
+  /* ---------- journal ---------- */
+  .journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+  .journal-card{border-top:1px solid var(--line);padding-top:22px;transition:transform 0.3s ease;}
+  .journal-card:hover{transform:translateY(-4px);}
+  .journal-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);}
+  .journal-title{font-family:var(--display);font-size:21px;font-weight:500;margin-top:14px;line-height:1.25;}
+  .journal-desc{font-size:13.5px;color:var(--stone);font-weight:300;margin-top:12px;}
+
+  /* ---------- newsletter ---------- */
+  .atelier{
+    background:linear-gradient(135deg, var(--ink-3) 0%, var(--ink) 70%);
+    position:relative;
+    overflow:hidden;
+  }
+  .atelier::after{
+    content:"";
+    position:absolute;
+    right:-120px; top:-120px;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(201,162,75,0.14) 0%, rgba(201,162,75,0) 70%);
+    pointer-events:none;
+  }
+  .atelier-inner{position:relative;text-align:center;max-width:620px;margin:0 auto;}
+  .atelier h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(30px, 3.6vw, 44px);
+    margin-top:16px;
+  }
+  .atelier p{color:var(--stone);margin-top:18px;font-size:15px;font-weight:300;}
+  .atelier-form{
+    margin-top:36px;
+    display:flex;
+    gap:0;
+    max-width:440px;
+    margin-left:auto;margin-right:auto;
+    border-bottom:1px solid var(--stone-dim);
+    transition:border-color .25s ease;
+  }
+  .atelier-form:focus-within{border-color:var(--gold);}
+  .atelier-form input{
+    flex:1;
+    background:none;
+    border:none;
+    padding:14px 4px;
+    color:var(--parchment);
+    font-family:var(--body);
+    font-size:14px;
+  }
+  .atelier-form input::placeholder{color:var(--stone-dim);}
+  .atelier-form button{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--gold);
+    padding:14px 6px;
+    white-space:nowrap;
+    transition:color .25s ease;
+  }
+  .atelier-form button:hover{color:var(--gucci-green-bright);}
+  .atelier-note{margin-top:16px;font-family:var(--mono);font-size:10.5px;color:var(--stone-dim);letter-spacing:0.5px;}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:56px 0 40px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;}
+  .footer-logo{font-family:var(--display);font-size:20px;font-weight:500;}
+  .footer-logo span{color:var(--gold);}
+  .footer-tag{margin-top:14px;font-size:13px;color:var(--stone-dim);font-weight:300;max-width:32ch;}
+  .footer-col-title{font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone-dim);margin-bottom:16px;}
+  .footer-col a{display:block;font-size:13.5px;color:var(--stone);margin-bottom:10px;transition:color .25s ease;}
+  .footer-col a:hover{color:var(--parchment);}
+  .footer-bottom{
+    margin-top:56px;padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-family:var(--mono);font-size:10.5px;color:var(--stone-dim);letter-spacing:0.5px;
+  }
+
+  /* ---------- trust bar ---------- */
+  .trust-bar{
+    background:var(--ink-2);
+    border-bottom:1px solid var(--line);
+    padding:16px 0;
+  }
+  .trust-inner{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px 36px;
+  }
+  .trust-item{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:var(--stone);
+    white-space:nowrap;
+  }
+  .trust-item b{color:var(--parchment);font-weight:500;}
+
+  /* ---------- nav bag ---------- */
+  .nav-bag{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--parchment);
+    border-bottom:1px solid var(--stone-dim);
+    padding-bottom:3px;
+    transition:color .25s ease,border-color .25s ease;
+  }
+  .nav-bag:hover{color:var(--gold);border-color:var(--gold);}
+  .nav-bag em{font-style:normal;color:var(--gold);}
+
+  /* ---------- product badges + add to bag ---------- */
+  .scent-card{padding-top:34px;}
+  .scent-badge{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:9.5px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    padding:4px 9px;
+    margin-bottom:12px;
+    border:1px solid;
+  }
+  .scent-badge.bestseller{color:var(--gold);border-color:var(--gold-dim);}
+  .scent-badge.low-stock{color:var(--amber-bright);border-color:rgba(179,32,47,0.5);}
+  .scent-rating{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--stone);
+    margin-top:6px;
+  }
+  .scent-rating b{color:var(--parchment);}
+  .add-to-bag{
+    margin-top:14px;
+    width:100%;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    background:transparent;
+    border:1px solid var(--gold-dim);
+    color:var(--gold);
+    padding:12px 14px;
+    transition:background .25s ease,color .25s ease;
+  }
+  .add-to-bag:hover{background:var(--gold);color:var(--ink);}
+  .add-to-bag.is-added{background:var(--gucci-green);border-color:var(--gucci-green);color:var(--parchment);}
+
+  /* ---------- testimonials ---------- */
+  .testimonials{background:var(--ink-2);}
+  .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .testimonial-card{background:var(--ink-2);padding:34px 30px;}
+  .testimonial-rating{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:1px;}
+  .testimonial-quote{font-family:var(--display);font-style:italic;font-size:18px;line-height:1.45;margin-top:16px;color:var(--parchment);}
+  .testimonial-name{margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--stone);}
+
+  /* ---------- payment / checkout ---------- */
+  .payment{background:var(--ink-2);}
+  .payment-inner{display:grid;grid-template-columns:0.95fr 1.05fr;gap:64px;align-items:start;}
+  .cart-panel{background:var(--ink);border:1px solid var(--line);padding:30px 28px;}
+  .cart-title{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone);margin-bottom:18px;}
+  .cart-empty{font-size:13.5px;color:var(--stone-dim);font-weight:300;padding:10px 0;}
+  .cart-line{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line);font-size:13.5px;}
+  .cart-line:first-of-type{border-top:none;}
+  .cart-line-name{color:var(--parchment);}
+  .cart-line-meta{font-family:var(--mono);font-size:10.5px;color:var(--stone-dim);margin-top:4px;letter-spacing:0.5px;}
+  .cart-line-amt{font-family:var(--mono);color:var(--parchment);white-space:nowrap;}
+  .cart-line-remove{font-family:var(--mono);font-size:10px;color:var(--stone-dim);text-decoration:underline;margin-top:6px;display:inline-block;}
+  .cart-line-remove:hover{color:var(--amber-bright);}
+  .cart-promo{display:flex;gap:0;margin-top:20px;border-bottom:1px solid var(--stone-dim);}
+  .cart-promo input{flex:1;background:none;border:none;padding:10px 2px;color:var(--parchment);font-family:var(--body);font-size:13px;}
+  .cart-promo input::placeholder{color:var(--stone-dim);}
+  .cart-promo button{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);}
+  .cart-totals{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);}
+  .cart-total-row{display:flex;justify-content:space-between;font-size:13px;color:var(--stone);margin-bottom:8px;font-family:var(--mono);}
+  .cart-total-row.grand{color:var(--parchment);font-size:16px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);}
+  .cart-total-row.grand .cart-line-amt{font-size:18px;color:var(--gold);}
+
+  .checkout-form{background:var(--ink);border:1px solid var(--line);padding:30px 28px;}
+  .form-title{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone);margin-bottom:18px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-grid.full{grid-template-columns:1fr;}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .field label{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--stone-dim);}
+  .field input, .field select{
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    color:var(--parchment);
+    padding:11px 12px;
+    font-family:var(--body);
+    font-size:13.5px;
+  }
+  .field input::placeholder{color:var(--stone-dim);}
+  .pay-methods{display:flex;gap:10px;margin:6px 0 18px;flex-wrap:wrap;}
+  .pay-method{
+    flex:1;
+    min-width:110px;
+    text-align:center;
+    border:1px solid var(--line);
+    padding:12px 10px;
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--stone);
+    cursor:pointer;
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .pay-method input{display:none;}
+  .pay-method.is-active{border-color:var(--gold);color:var(--gold);}
+  .pay-btn{
+    width:100%;
+    margin-top:8px;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    padding:17px;
+    transition:background .25s ease,transform .25s ease;
+  }
+  .pay-btn:hover{background:var(--gold);transform:translateY(-2px);}
+  .pay-note{margin-top:14px;font-size:11.5px;color:var(--stone-dim);text-align:center;line-height:1.6;}
+  .pay-confirm{
+    margin-top:16px;
+    padding:14px 16px;
+    border:1px solid var(--gucci-green-bright);
+    color:var(--parchment);
+    font-size:13px;
+    display:none;
+  }
+  .pay-confirm.is-visible{display:block;}
+  .pay-confirm b{color:var(--gucci-green-bright);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .ribbon-stage{max-width:280px;margin:0 auto;order:-1;}
+    .manifesto-inner{grid-template-columns:1fr;gap:40px;}
+    .craft-inner{grid-template-columns:1fr;gap:48px;}
+    .collection-grid{grid-template-columns:repeat(2,1fr);}
+    .journal-grid{grid-template-columns:1fr;gap:44px;}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+    .nav-links{display:none;}
+    .nav-toggle{display:flex;}
+    .testimonial-grid{grid-template-columns:1fr;}
+    .payment-inner{grid-template-columns:1fr;gap:36px;}
+    .form-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:720px){
+    .nav-links.mobile-open{
+      display:flex;flex-direction:column;align-items:flex-start;gap:18px;
+      position:fixed; top:64px; left:0; right:0;
+      background:var(--ink); padding:28px 32px 34px;
+      border-bottom:1px solid var(--line);
+    }
+    section.block{padding:90px 0;}
+    .collection-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:28px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top">AN<span>-</span>COUTURE</a>
+    <nav class="nav-links" id="navLinks">
+      <a class="nav-link" href="#collection">Collection</a>
+      <a class="nav-link" href="#craft">Craftsmanship</a>
+      <a class="nav-link" href="#journal">Journal</a>
+      <a class="nav-bag" href="#payment" id="navBag">Bag <em>(0)</em></a>
+      <a class="nav-cta" href="#atelier">The Atelier List</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="wrap trust-inner">
+    <span class="trust-item"><b>Free delivery</b> on orders over R1,000</span>
+    <span class="trust-item"><b>Secure checkout</b> · encrypted at every step</span>
+    <span class="trust-item"><b>30-day returns</b> · unworn, unopened</span>
+    <span class="trust-item"><b>4.9/5</b> from 1,240 verified clients</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow hero-eyebrow">AN-COUTURE — EAU DE PARFUM</p>
+      <h1>WORN LIKE<br><em>COUTURE.</em></h1>
+      <p class="hero-sub">Not a spritz. A silhouette you can smell — cut close, worn on purpose, remembered after you've left the room.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#noir-velours">Discover Noir Velours</a>
+        <a class="btn-text" href="#collection">Explore the Collection</a>
+      </div>
+    </div>
+    <div class="ribbon-stage reveal" id="ribbonStage">
+      <div class="ribbon-panel">
+        <div class="ribbon-stripe"></div>
+        <div class="ribbon-top">
+          <div class="ribbon-house">AN<span>-</span>COUTURE</div>
+        </div>
+        <div class="ribbon-bottom">
+          <div class="ribbon-price-label">The Collection</div>
+          <div class="ribbon-price">From <em>R150</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifesto">
+  <div class="wrap manifesto-inner">
+    <div class="manifesto-quote reveal">
+      Fragrance is the only <span class="accent">garment</span> that can't be seen — and the only one people remember longest.
+    </div>
+    <div class="manifesto-body reveal">
+      <p>AN-Couture was built on a simple disagreement with the rest of the industry: that scent should sell itself with volume, not intention. We treat each fragrance the way a couturier treats a single dress — one silhouette, considered from every angle, made to be worn by someone in particular.</p>
+      <p>No trend-chasing top notes, no fragrance-by-committee. Every AN-Couture scent begins with a mood we can name in one sentence, and is built, layer by layer, until it earns the right to leave the room after you do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="block" id="collection">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Collection</p>
+      <h2>Four silhouettes.<br>One house.</h2>
+      <p>Each fragrance is built around a single mood — filter by the one that matches yours, or read every story below. All prices in South African Rand, discovery sizes from R150.</p>
+    </div>
+  </div>
+  <div class="collection-grid">
+
+    <div class="scent-card reveal" id="noir-velours">
+      <div class="scent-index">N° 01</div>
+      <span class="scent-badge bestseller">Bestseller</span>
+      <div class="scent-photo-frame"><img class="scent-photo" src="../images-only/Perfume-image.jpg" onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback');" alt="Noir Velours bottle"></div>
+      <div class="scent-swatch" style="--swatch-a:var(--amber);--swatch-b:var(--ink-3);"></div>
+      <div class="scent-name">Noir Velours</div>
+      <div class="scent-mood">For the room you command</div>
+      <div class="scent-rating"><b>4.9</b>/5 · 412 reviews</div>
+      <div class="scent-notes">
+        <div class="scent-line"><strong>Top</strong>Black pepper, bergamot</div>
+        <div class="scent-line"><strong>Heart</strong>Dark oud, smoked amber</div>
+        <div class="scent-line"><strong>Base</strong>Vanilla husk, cade wood</div>
+      </div>
+      <div class="scent-foot">
+        <div class="price-row"><span class="price-size">10ML Discovery</span><span class="price-amt">R180</span></div>
+        <div class="price-row"><span class="price-size">50ML</span><span class="price-amt">R1,850</span></div>
+        <button class="add-to-bag" data-name="Noir Velours" data-size="50ML" data-price="1850">Add 50ML to Bag</button>
+        <a href="#craft">Full Notes ↓</a>
+      </div>
+    </div>
+
+    <div class="scent-card reveal">
+      <div class="scent-index">N° 02</div>
+      <div class="scent-photo-frame"><img class="scent-photo" src="../images-only/Perfume-image.jpg" onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback');" alt="Voile Blanc bottle"></div>
+      <div class="scent-swatch" style="--swatch-a:var(--stone-dim);--swatch-b:var(--gucci-green);"></div>
+      <div class="scent-name">Voile Blanc</div>
+      <div class="scent-mood">For quiet entrances</div>
+      <div class="scent-rating"><b>4.8</b>/5 · 296 reviews</div>
+      <div class="scent-notes">
+        <div class="scent-line"><strong>Top</strong>Rice powder, pear blossom</div>
+        <div class="scent-line"><strong>Heart</strong>White musk, orange flower</div>
+        <div class="scent-line"><strong>Base</strong>Soft cedar, iris root</div>
+      </div>
+      <div class="scent-foot">
+        <div class="price-row"><span class="price-size">10ML Discovery</span><span class="price-amt">R150</span></div>
+        <div class="price-row"><span class="price-size">50ML</span><span class="price-amt">R1,650</span></div>
+        <button class="add-to-bag" data-name="Voile Blanc" data-size="50ML" data-price="1650">Add 50ML to Bag</button>
+        <a href="#craft">Full Notes ↓</a>
+      </div>
+    </div>
+
+    <div class="scent-card reveal">
+      <div class="scent-index">N° 03</div>
+      <span class="scent-badge low-stock">Only 6 left</span>
+      <div class="scent-photo-frame"><img class="scent-photo" src="../images-only/Perfume-image.jpg" onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback');" alt="Cuir Rouge bottle"></div>
+      <div class="scent-swatch" style="--swatch-a:var(--amber-bright);--swatch-b:var(--ink-3);"></div>
+      <div class="scent-name">Cuir Rouge</div>
+      <div class="scent-mood">For the after-hours self</div>
+      <div class="scent-rating"><b>4.9</b>/5 · 187 reviews</div>
+      <div class="scent-notes">
+        <div class="scent-line"><strong>Top</strong>Blood orange, saffron</div>
+        <div class="scent-line"><strong>Heart</strong>Supple leather, rose absolute</div>
+        <div class="scent-line"><strong>Base</strong>Tobacco leaf, labdanum</div>
+      </div>
+      <div class="scent-foot">
+        <div class="price-row"><span class="price-size">10ML Discovery</span><span class="price-amt">R195</span></div>
+        <div class="price-row"><span class="price-size">50ML</span><span class="price-amt">R1,950</span></div>
+        <button class="add-to-bag" data-name="Cuir Rouge" data-size="50ML" data-price="1950">Add 50ML to Bag</button>
+        <a href="#craft">Full Notes ↓</a>
+      </div>
+    </div>
+
+    <div class="scent-card reveal">
+      <div class="scent-index">N° 04</div>
+      <div class="scent-photo-frame"><img class="scent-photo" src="../images-only/Perfume-image.jpg" onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback');" alt="Sel d'Été bottle"></div>
+      <div class="scent-swatch" style="--swatch-a:var(--gucci-green-bright);--swatch-b:var(--stone-dim);"></div>
+      <div class="scent-name">Sel d'Été</div>
+      <div class="scent-mood">For skin that's been in the sun</div>
+      <div class="scent-rating"><b>4.7</b>/5 · 204 reviews</div>
+      <div class="scent-notes">
+        <div class="scent-line"><strong>Top</strong>Sea salt, grapefruit zest</div>
+        <div class="scent-line"><strong>Heart</strong>Fig leaf, ambrette seed</div>
+        <div class="scent-line"><strong>Base</strong>Driftwood, soft musk</div>
+      </div>
+      <div class="scent-foot">
+        <div class="price-row"><span class="price-size">10ML Discovery</span><span class="price-amt">R165</span></div>
+        <div class="price-row"><span class="price-size">50ML</span><span class="price-amt">R1,450</span></div>
+        <button class="add-to-bag" data-name="Sel d'Été" data-size="50ML" data-price="1450">Add 50ML to Bag</button>
+        <a href="#craft">Full Notes ↓</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CRAFTSMANSHIP -->
+<section class="block craft" id="craft">
+  <div class="wrap craft-inner">
+    <div class="craft-copy reveal">
+      <p class="eyebrow">Craftsmanship</p>
+      <h2 style="font-family:var(--display);font-weight:500;font-size:clamp(28px,3.2vw,40px);margin:14px 0 22px;line-height:1.1;">Built in three<br>movements.</h2>
+      <div class="craft-flag">Featured: Noir Velours</div>
+      <p>Every AN-Couture fragrance is composed the way a piece of couture is constructed — an idea, a structure, then a finish that holds it all together long after the first impression fades.</p>
+      <p>The pyramid beside this text isn't decoration. It's the actual architecture of Noir Velours: what you meet first, what settles in for the evening, and what stays on the skin the next morning.</p>
+    </div>
+    <div class="reveal">
+      <div class="pyramid" id="pyramid">
+        <div class="pyr-row">
+          <div class="pyr-label"><b>Top Notes</b><span>0–15 min</span></div>
+          <div class="pyr-track"><div class="pyr-fill" style="--target:38%"></div></div>
+          <div class="pyr-notes">Black pepper · Bergamot · Pink cardamom</div>
+        </div>
+        <div class="pyr-row">
+          <div class="pyr-label"><b>Heart Notes</b><span>15 min – 3 hrs</span></div>
+          <div class="pyr-track"><div class="pyr-fill" style="--target:68%"></div></div>
+          <div class="pyr-notes">Dark oud · Smoked amber · Bulgarian rose</div>
+        </div>
+        <div class="pyr-row">
+          <div class="pyr-label"><b>Base Notes</b><span>3 hrs onward</span></div>
+          <div class="pyr-track"><div class="pyr-fill" style="--target:92%"></div></div>
+          <div class="pyr-notes">Vanilla husk · Cade wood · White musk</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="block testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Client Notes</p>
+      <h2>Worn and<br>reported back.</h2>
+    </div>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-rating">4.9 / 5</div>
+      <p class="testimonial-quote">"I've had three people ask what I'm wearing in the same elevator ride. Noir Velours doesn't announce itself — it just lingers."</p>
+      <div class="testimonial-name">— Thandeka M., Johannesburg</div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-rating">5.0 / 5</div>
+      <p class="testimonial-quote">"Sel d'Été is the first summer scent that's actually lasted past lunch. Ordered the 50ML the same week I tried the discovery size."</p>
+      <div class="testimonial-name">— Luca P., Cape Town</div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-rating">4.8 / 5</div>
+      <p class="testimonial-quote">"Cuir Rouge is exactly what the site promises — leather and saffron, no sweetness hiding behind it. Worth the wait for restock."</p>
+      <div class="testimonial-name">— Aiden K., Durban</div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNAL -->
+<section class="block" id="journal">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Journal</p>
+      <h2>Stories from<br>the atelier.</h2>
+    </div>
+    <div class="journal-grid">
+      <div class="journal-card reveal">
+        <div class="journal-tag">Guide</div>
+        <div class="journal-title">Fragrances for Golden Hour</div>
+        <p class="journal-desc">Why warm, resinous scents behave differently as the light changes — and which AN-Couture notes are built for that hour.</p>
+      </div>
+      <div class="journal-card reveal">
+        <div class="journal-tag">Process</div>
+        <div class="journal-title">Inside the Making of Cuir Rouge</div>
+        <p class="journal-desc">From a single saffron sample to a finished leather accord — eighteen months in the life of one fragrance.</p>
+      </div>
+      <div class="journal-card reveal">
+        <div class="journal-tag">Ritual</div>
+        <div class="journal-title">The Case for Wearing One Scent</div>
+        <p class="journal-desc">On restraint, signature, and why the most memorable people rarely smell like more than one idea.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATELIER LIST / NEWSLETTER -->
+<section class="block atelier" id="atelier">
+  <div class="wrap atelier-inner reveal">
+    <p class="eyebrow">The Atelier List</p>
+    <h2>Access before<br>the drop.</h2>
+    <p>Limited runs, early fittings, and the occasional scent that never makes retail — reserved for those on the list first.</p>
+    <form class="atelier-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Request Received';">
+      <input type="email" placeholder="Your email address" required aria-label="Email address">
+      <button type="submit">Request Access</button>
+    </form>
+    <p class="atelier-note">NO SPAM. NO NOISE. JUST THE NEXT SCENT, FIRST.</p>
+  </div>
+</section>
+
+<!-- PAYMENT / CHECKOUT -->
+<section class="block payment" id="payment">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Your Bag</p>
+      <h2>Complete<br>your order.</h2>
+      <p>Everything you've added sits here. Checkout is quoted in South African Rand, with free delivery over R1,000.</p>
+    </div>
+    <div class="payment-inner">
+
+      <div class="cart-panel reveal">
+        <div class="cart-title">Order Summary</div>
+        <div id="cartLines">
+          <p class="cart-empty" id="cartEmptyMsg">Your bag is empty — add a fragrance from the collection above.</p>
+        </div>
+        <div class="cart-promo">
+          <input type="text" placeholder="Promo code" id="promoInput" aria-label="Promo code">
+          <button type="button" id="promoBtn">Apply</button>
+        </div>
+        <div class="cart-totals">
+          <div class="cart-total-row"><span>Subtotal</span><span class="cart-line-amt" id="cartSubtotal">R0</span></div>
+          <div class="cart-total-row"><span>Delivery</span><span class="cart-line-amt" id="cartDelivery">R95</span></div>
+          <div class="cart-total-row" id="cartDiscountRow" style="display:none;"><span>Promo (WELCOME10)</span><span class="cart-line-amt" id="cartDiscount">−R0</span></div>
+          <div class="cart-total-row grand"><span>Total</span><span class="cart-line-amt" id="cartTotal">R0</span></div>
+        </div>
+      </div>
+
+      <form class="checkout-form reveal" id="checkoutForm">
+        <div class="form-title">Shipping Details</div>
+        <div class="form-grid">
+          <div class="field"><label for="fullName">Full name</label><input id="fullName" type="text" placeholder="Naledi Dlamini" required></div>
+          <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="you@example.com" required></div>
+        </div>
+        <div class="form-grid full">
+          <div class="field"><label for="address">Delivery address</label><input id="address" type="text" placeholder="12 Long Street, Cape Town" required></div>
+        </div>
+        <div class="form-grid">
+          <div class="field"><label for="city">City</label><input id="city" type="text" placeholder="Cape Town" required></div>
+          <div class="field"><label for="postal">Postal code</label><input id="postal" type="text" placeholder="8001" required></div>
+        </div>
+
+        <div class="form-title" style="margin-top:8px;">Payment Method</div>
+        <div class="pay-methods" id="payMethods">
+          <label class="pay-method is-active"><input type="radio" name="payMethod" value="card" checked>Card</label>
+          <label class="pay-method"><input type="radio" name="payMethod" value="eft">Instant EFT</label>
+          <label class="pay-method"><input type="radio" name="payMethod" value="snapscan">SnapScan</label>
+        </div>
+
+        <div id="cardFields">
+          <div class="form-grid full">
+            <div class="field"><label for="cardName">Name on card</label><input id="cardName" type="text" placeholder="N. Dlamini"></div>
+          </div>
+          <div class="form-grid full">
+            <div class="field"><label for="cardNumber">Card number</label><input id="cardNumber" type="text" inputmode="numeric" placeholder="4000 0000 0000 0000" maxlength="19"></div>
+          </div>
+          <div class="form-grid">
+            <div class="field"><label for="cardExpiry">Expiry</label><input id="cardExpiry" type="text" placeholder="MM/YY" maxlength="5"></div>
+            <div class="field"><label for="cardCvc">CVC</label><input id="cardCvc" type="text" placeholder="123" maxlength="4"></div>
+          </div>
+        </div>
+
+        <button type="submit" class="pay-btn" id="payBtn">Pay R0</button>
+        <p class="pay-note">This is a concept prototype. No card details are sent, stored, or processed anywhere — "Pay" simply confirms your order on this page.</p>
+        <div class="pay-confirm" id="payConfirm"><b>Order confirmed.</b> This demo doesn't take real payment — in production this is where AN-Couture would hand off to a PCI-compliant payment gateway.</div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">AN<span>-</span>COUTURE</div>
+        <p class="footer-tag">A modern couture perfume house. Scent worn like couture — cut close, made on purpose.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Collection</div>
+        <a href="#noir-velours">Noir Velours</a>
+        <a href="#collection">Voile Blanc</a>
+        <a href="#collection">Cuir Rouge</a>
+        <a href="#collection">Sel d'Été</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">House</div>
+        <a href="#manifesto">Manifesto</a>
+        <a href="#craft">Craftsmanship</a>
+        <a href="#journal">Journal</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Client Care</div>
+        <a href="mailto:atelier@an-couture.com">atelier@an-couture.com</a>
+        <a href="#payment">Your Bag &amp; Checkout</a>
+        <a href="#atelier">The Atelier List</a>
+        <a href="#top">Shipping &amp; Care</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AN-COUTURE. ALL RIGHTS RESERVED.</span>
+      <span>DESIGNED AS A CONCEPT PROTOTYPE</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  var header = document.getElementById('siteHeader');
+  function onScroll(){
+    header.classList.toggle('is-scrolled', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('mobile-open');
+    navToggle.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('mobile-open');
+      navToggle.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded','false');
+    });
+  });
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
+    revealEls.forEach(function(el){ obs.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  var pyrFills = document.querySelectorAll('.pyr-fill');
+  if('IntersectionObserver' in window){
+    var pyrObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('is-filled');
+          pyrObs.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.5});
+    pyrFills.forEach(function(el){ pyrObs.observe(el); });
+  } else {
+    pyrFills.forEach(function(el){ el.classList.add('is-filled'); });
+  }
+
+  /* ---------- cart & checkout (in-memory only, no storage) ---------- */
+  var cart = [];
+  var DELIVERY = 95;
+  var promoApplied = false;
+
+  var cartLinesEl = document.getElementById('cartLines');
+  var cartSubtotalEl = document.getElementById('cartSubtotal');
+  var cartDeliveryEl = document.getElementById('cartDelivery');
+  var cartDiscountRow = document.getElementById('cartDiscountRow');
+  var cartDiscountEl = document.getElementById('cartDiscount');
+  var cartTotalEl = document.getElementById('cartTotal');
+  var navBagEl = document.getElementById('navBag');
+  var payBtn = document.getElementById('payBtn');
+
+  function formatR(n){
+    return 'R' + n.toLocaleString('en-ZA', {maximumFractionDigits:0});
+  }
+
+  function renderCart(){
+    if(cart.length === 0){
+      cartLinesEl.innerHTML = '<p class="cart-empty" id="cartEmptyMsg">Your bag is empty — add a fragrance from the collection above.</p>';
+    } else {
+      cartLinesEl.innerHTML = cart.map(function(item, i){
+        return '<div class="cart-line">' +
+          '<div><div class="cart-line-name">' + item.name + '</div>' +
+          '<div class="cart-line-meta">' + item.size + ' × ' + item.qty + '</div>' +
+          '<a href="#" class="cart-line-remove" data-index="' + i + '">Remove</a></div>' +
+          '<div class="cart-line-amt">' + formatR(item.price * item.qty) + '</div>' +
+          '</div>';
+      }).join('');
+      cartLinesEl.querySelectorAll('.cart-line-remove').forEach(function(btn){
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          cart.splice(parseInt(this.getAttribute('data-index'), 10), 1);
+          renderCart();
+        });
+      });
+    }
+
+    var subtotal = cart.reduce(function(sum, item){ return sum + item.price * item.qty; }, 0);
+    var delivery = (subtotal === 0 || subtotal >= 1000) ? 0 : DELIVERY;
+    var discount = promoApplied ? Math.round(subtotal * 0.10) : 0;
+    var total = Math.max(subtotal - discount + delivery, 0);
+
+    cartSubtotalEl.textContent = formatR(subtotal);
+    cartDeliveryEl.textContent = subtotal === 0 ? formatR(DELIVERY) : (delivery === 0 ? 'Free' : formatR(delivery));
+    if(promoApplied && subtotal > 0){
+      cartDiscountRow.style.display = 'flex';
+      cartDiscountEl.textContent = '−' + formatR(discount);
+    } else {
+      cartDiscountRow.style.display = 'none';
+    }
+    cartTotalEl.textContent = formatR(total);
+    payBtn.textContent = 'Pay ' + formatR(total);
+
+    var count = cart.reduce(function(sum, item){ return sum + item.qty; }, 0);
+    navBagEl.innerHTML = 'Bag <em>(' + count + ')</em>';
+  }
+
+  document.querySelectorAll('.add-to-bag').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var name = this.getAttribute('data-name');
+      var size = this.getAttribute('data-size');
+      var price = parseInt(this.getAttribute('data-price'), 10);
+      var existing = cart.find(function(item){ return item.name === name && item.size === size; });
+      if(existing){ existing.qty += 1; } else { cart.push({name:name, size:size, price:price, qty:1}); }
+      renderCart();
+
+      var original = this.textContent;
+      this.textContent = 'Added to Bag';
+      this.classList.add('is-added');
+      var self = this;
+      setTimeout(function(){
+        self.textContent = original;
+        self.classList.remove('is-added');
+      }, 1600);
+    });
+  });
+
+  var promoBtn = document.getElementById('promoBtn');
+  var promoInput = document.getElementById('promoInput');
+  promoBtn.addEventListener('click', function(){
+    if(promoInput.value.trim().toUpperCase() === 'WELCOME10'){
+      promoApplied = true;
+    }
+    renderCart();
+  });
+
+  document.querySelectorAll('.pay-method').forEach(function(label){
+    label.addEventListener('click', function(){
+      document.querySelectorAll('.pay-method').forEach(function(l){ l.classList.remove('is-active'); });
+      this.classList.add('is-active');
+      var isCard = this.querySelector('input').value === 'card';
+      document.getElementById('cardFields').style.display = isCard ? 'block' : 'none';
+    });
+  });
+
+  var checkoutForm = document.getElementById('checkoutForm');
+  var payConfirm = document.getElementById('payConfirm');
+  checkoutForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(cart.length === 0){
+      cartLinesEl.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'center'});
+      return;
+    }
+    payConfirm.classList.add('is-visible');
+    payConfirm.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'center'});
+  });
+
+  renderCart();
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = this.getAttribute('href');
+      if(id.length < 2) return;
+      var target = document.querySelector(id);
+      if(!target) return;
+      e.preventDefault();
+      var offset = header.offsetHeight + 10;
+      var pos = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({top:pos, behavior: reduceMotion ? 'auto' : 'smooth'});
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
